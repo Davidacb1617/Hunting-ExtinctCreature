@@ -7,7 +7,9 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class CreaturesService {
   constructor(private prisma: PrismaService) {}
   create(createCreatureDto: CreateCreatureDto) {
-    return 'This action adds a new creature';
+    return this.prisma.creature.create({
+      data: createCreatureDto,
+    })
   }
 
   findAllAlive() {
@@ -29,16 +31,21 @@ export class CreaturesService {
   findOne(id: number) {
     return this.prisma.creature.findUnique({
       where: {
-        id: id,
+        id
       },
     });
   }
 
   update(id: number, updateCreatureDto: UpdateCreatureDto) {
-    return `This action updates a #${id} creature`;
+    return this.prisma.creature.update({
+      where:{ id,},
+      data: updateCreatureDto,
+    })
   }
 
   remove(id: number) {
-    return `This action removes a #${id} this`;
+    return this.prisma.creature.delete({
+      where: { id },
+    })
   }
 }
