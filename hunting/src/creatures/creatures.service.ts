@@ -9,7 +9,7 @@ export class CreaturesService {
   create(createCreatureDto: CreateCreatureDto) {
     return this.prisma.creature.create({
       data: createCreatureDto,
-    })
+    });
   }
 
   findAllAlive() {
@@ -31,21 +31,21 @@ export class CreaturesService {
   findOne(id: number) {
     return this.prisma.creature.findUnique({
       where: {
-        id
+        id,
       },
     });
   }
 
   update(id: number, updateCreatureDto: UpdateCreatureDto) {
     return this.prisma.creature.update({
-      where:{ id,},
+      where: { id },
       data: updateCreatureDto,
-    })
+    });
   }
 
   remove(id: number) {
     return this.prisma.creature.delete({
       where: { id },
-    })
+    });
   }
 }
